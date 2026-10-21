@@ -110,6 +110,7 @@ final class German {
             case "No city with that name.": return "Keine Stadt mit diesem Namen.";
             case "Couldn't search now: ": return "Suche gerade nicht möglich: ";
             case "Quotes widget": return "Kurs-Widget";
+            case "Navigation sounds": return "Navigationstöne";
             case "On": return "An";
             case "Off": return "Aus";
             case "Shelf": return "Leiste";

@@ -94,6 +94,10 @@ final class Prefs {
 
     // MARK: - Widgets and coins
 
+    /** The home screen's soft clicks when moving and opening (Home Settings › Navigation sounds). */
+    static boolean sounds() { return sp().getBoolean("sounds", true); }
+    static void setSounds(boolean on) { put("sounds", on); }
+
     static boolean weather() { return sp().getBoolean("weather", true); }
     static void setWeather(boolean on) { put("weather", on); }
 
