@@ -62,6 +62,7 @@
  "Navigation sounds": "Звуки навигации",
  "Netflix button": "Кнопка Netflix",
  "Netflix, YouTube and Prime Video: the TV itself controls those buttons.": "Кнопками Netflix, YouTube и Prime Video управляет сам телевизор.",
+ "Netflix, YouTube, Prime Video and Disney: the TV itself controls those buttons.": "Кнопками Netflix, YouTube, Prime Video и Disney управляет сам телевизор.",
  "Next hours: {list}.": "Ближайшие часы: {list}.",
  "No TMDB key: see the README (config.properties).": "Нет ключа TMDB: см. README (config.properties).",
  "No ads, with the new screensaver": "Без рекламы, с новой заставкой",

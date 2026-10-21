@@ -62,6 +62,7 @@
  "Navigation sounds": "Navigasjonslyder",
  "Netflix button": "Netflix-knappen",
  "Netflix, YouTube and Prime Video: the TV itself controls those buttons.": "Netflix, YouTube og Prime Video: TV-en styrer knappene.",
+ "Netflix, YouTube, Prime Video and Disney: the TV itself controls those buttons.": "Netflix, YouTube, Prime Video og Disney: TV-en styrer knappene.",
  "Next hours: {list}.": "De neste timene: {list}.",
  "No TMDB key: see the README (config.properties).": "Ingen TMDB-nøkkel: se README (config.properties).",
  "No ads, with the new screensaver": "Uten reklame, med den nye skjermspareren",

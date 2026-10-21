@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Free My TV</string>
     <string name="remote_key_service">Lets the app buttons on the remote (Netflix, YouTube, Prime Video, TCL Channel) open the apps you picked in Free My TV, from any app. It only reads those buttons.</string>
+    <string name="play_key_service">Lets the Google Play button on Philips remotes open the app you picked in Free My TV. It only reads the TV\'s log of that button.</string>
 </resources>

@@ -17,6 +17,7 @@ import android.view.KeyEvent;
  * On KTC TVs (NextStar) only the Tabii button is ours, a global key too: the TV's hot-key receiver opens Tabii with it.
  * On Sony TVs, the app buttons (and the Google Play button of older remotes) are global keys for Sony's own receiver;
  * the filter sees them first, the same way.
+ * On Philips (TP Vision/TPV) only the Google Play button is ours, and no key filter ever sees it: PlayKeyService.
  */
 final class RemoteKeys {
     private RemoteKeys() {}
@@ -28,12 +29,13 @@ final class RemoteKeys {
      * The key codes are the brand's own: on other brands they can be other buttons, so nothing here runs there.
      * Vestel builds TVs sold under other brands (F&U...), so BRAND varies: check the maker too.
      */
-    static final boolean TCL = is("TCL"), VESTEL = is("Vestel"), KTC = is("KTC"), SONY = is("Sony"), FORMOVIE = is("Formovie");
+    static final boolean TCL = is("TCL"), VESTEL = is("Vestel"), KTC = is("KTC"), SONY = is("Sony"), FORMOVIE = is("Formovie"),
+            PHILIPS = is("Philips");
     /** Brands whose Netflix button is STEM_1, a global key (MediaTek): only that button is ours. */
     static final boolean STEM_NETFLIX = VESTEL || FORMOVIE;
 
     static boolean supported() {
-        return TCL || STEM_NETFLIX || KTC || SONY;
+        return TCL || STEM_NETFLIX || KTC || SONY || PHILIPS;
     }
 
     private static boolean is(String maker) {
@@ -57,14 +59,18 @@ final class RemoteKeys {
         boolean ours = false;
         for (int key : Prefs.KEYS) ours |= key == keyCode;
         if (!ours) return false;
-        String pkg = Prefs.keyApp(keyCode);
-        if (pkg.isEmpty()) return false;   // "Nothing": the key goes on as if we weren't here
-        if (e.getAction() == KeyEvent.ACTION_DOWN && e.getRepeatCount() == 0) {
-            Intent intent = launchIntent(c.getPackageManager(), pkg);
-            AppLog.w("remote key " + e.getKeyCode() + " -> " + pkg + (intent == null ? " (not installed)" : ""));
-            if (intent != null) c.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-        }
+        if (Prefs.keyApp(keyCode).isEmpty()) return false;   // "Nothing": the key goes on as if we weren't here
+        if (e.getAction() == KeyEvent.ACTION_DOWN && e.getRepeatCount() == 0) open(c, keyCode);
         return true;
+    }
+
+    /** Opens the app picked for this key (Settings > Remote Buttons); nothing when it is set to "Nothing". */
+    static void open(Context c, int keyCode) {
+        String pkg = Prefs.keyApp(keyCode);
+        if (pkg.isEmpty()) return;
+        Intent intent = launchIntent(c.getPackageManager(), pkg);
+        AppLog.w("remote key " + keyCode + " -> " + pkg + (intent == null ? " (not installed)" : ""));
+        if (intent != null) c.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     /** The app's TV launcher, or its plain one (kept here, not in HomeApps, so the key process stays small). */

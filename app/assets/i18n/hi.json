@@ -62,6 +62,7 @@
  "Navigation sounds": "नेविगेशन ध्वनियाँ",
  "Netflix button": "Netflix बटन",
  "Netflix, YouTube and Prime Video: the TV itself controls those buttons.": "Netflix, YouTube और Prime Video: ये बटन TV खुद संभालता है।",
+ "Netflix, YouTube, Prime Video and Disney: the TV itself controls those buttons.": "Netflix, YouTube, Prime Video और Disney: ये बटन TV खुद संभालता है।",
  "Next hours: {list}.": "अगले घंटे: {list}।",
  "No TMDB key: see the README (config.properties).": "TMDB की नहीं है: README देखें (config.properties)।",
  "No ads, with the new screensaver": "बिना विज्ञापन, नए स्क्रीनसेवर के साथ",

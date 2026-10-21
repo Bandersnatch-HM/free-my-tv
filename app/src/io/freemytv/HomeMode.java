@@ -182,11 +182,14 @@ final class HomeMode {
         }
     }
 
-    private static final String REMOTE_SERVICE = PKG + "/" + PKG + ".RemoteKeyService";
+    /** The remote's buttons: a key filter on TCL and Vestel; on Philips, a watcher of the TV's own key log. */
+    private static final String REMOTE_SERVICE = PKG + "/" + PKG + (RemoteKeys.PHILIPS ? ".PlayKeyService" : ".RemoteKeyService");
     private static final Pattern SERVICE = Pattern.compile("[\\w.]+/[\\w.$]+");
 
     /** Adds ours to the enabled accessibility services (keeping the others, like TalkBack), or takes it out. */
     private static void remoteService(Context c, Adb adb, boolean on) throws IOException {
+        // PlayKeyService reads the TV's log: the permission goes with the service, and Original takes it back.
+        if (RemoteKeys.PHILIPS) adb.shell("pm " + (on ? "grant " : "revoke ") + PKG + " android.permission.READ_LOGS");
         String current = adb.shell("settings get secure enabled_accessibility_services").trim();
         if (current.equals("null")) current = "";
         List<String> others = new ArrayList<>();

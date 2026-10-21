@@ -62,6 +62,7 @@
  "Navigation sounds": "탐색 효과음",
  "Netflix button": "Netflix 버튼",
  "Netflix, YouTube and Prime Video: the TV itself controls those buttons.": "Netflix, YouTube, Prime Video 버튼은 TV에서 직접 제어합니다.",
+ "Netflix, YouTube, Prime Video and Disney: the TV itself controls those buttons.": "Netflix, YouTube, Prime Video, Disney 버튼은 TV에서 직접 제어합니다.",
  "Next hours: {list}.": "다음 시간: {list}.",
  "No TMDB key: see the README (config.properties).": "TMDB 키 없음: README(config.properties)를 참고하세요.",
  "No ads, with the new screensaver": "광고 없음, 새 화면 보호기 포함",
