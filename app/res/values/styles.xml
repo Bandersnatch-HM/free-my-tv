@@ -6,6 +6,8 @@
     <style name="FreeMyTV.Home" parent="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen">
         <item name="android:windowBackground">@color/home_background</item>
         <item name="android:windowContentOverlay">@null</item>
+        <!-- No starting window: in the dark theme (after sunset) the light one flashed before the first frame. -->
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowShowWallpaper">false</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
