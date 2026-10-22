@@ -119,6 +119,12 @@ final class Prefs {
     static boolean quotes() { return sp().getBoolean("quotes", Config.SHOW_CRYPTO); }
     static void setQuotes(boolean on) { put("quotes", on); }
 
+    /** Picks from this streaming service (Recs key: netflix, disney…); on unless config.properties hide_services names it. */
+    static boolean pickService(String key) {
+        return sp().getBoolean("picks_" + key, !Recs.hidden(key));
+    }
+    static void setPickService(String key, boolean on) { put("picks_" + key, on); }
+
     static boolean coin(int i) { return sp().getBoolean("coin" + i, true); }
     static void setCoin(int i, boolean on) { put("coin" + i, on); }
 

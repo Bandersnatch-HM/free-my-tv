@@ -580,7 +580,7 @@ final class Recs {
         return first;
     }
 
-    /** Services named in hide_services (config.properties), trimmed and lowercased: never a source of picks. */
+    /** Services named in hide_services (config.properties), trimmed and lowercased: the picks start without them. */
     private static final Set<String> HIDDEN = new HashSet<>();
     static {
         for (String s : Config.HIDE_SERVICES.split(",")) {
@@ -589,9 +589,22 @@ final class Recs {
         }
     }
 
-    /** The service's app is on the TV, and the service isn't hidden (an app the TV ships without a subscription, say). */
+    static boolean hidden(String key) {
+        return HIDDEN.contains(key);
+    }
+
+    /** The streaming services the TV has, as {key, name}, for the picks rows in Home Settings. */
+    static List<String[]> serviceChoices(Context c) {
+        List<String[]> out = new ArrayList<>();
+        for (String[] s : SERVICES) {
+            if (HomeApps.launchIntent(c.getPackageManager(), s[2]) != null) out.add(new String[] {s[1], SERVICE_NAME.get(s[1])});
+        }
+        return out;
+    }
+
+    /** The service's app is on the TV, and its picks are on (Home Settings › Picks; hide_services gives the first values). */
     private boolean installed(String pkg) {
-        if (!HIDDEN.isEmpty()) for (String[] s : SERVICES) if (s[2].equals(pkg) && HIDDEN.contains(s[1])) return false;
+        for (String[] s : SERVICES) if (s[2].equals(pkg) && !Prefs.pickService(s[1])) return false;
         return HomeApps.launchIntent(context.getPackageManager(), pkg) != null;
     }
 
